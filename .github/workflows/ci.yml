@@ -58,3 +58,60 @@ jobs:
         with:
           name: test-results-${{ matrix.os }}
           path: test-results.xml
+
+  coverage:
+    name: Coverage (Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache JUCE and Catch2
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: deps-ubuntu-latest-${{ hashFiles('CMakeLists.txt') }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libasound2-dev libjack-jackd2-dev libxi-dev \
+            libx11-dev libxcomposite-dev libxcursor-dev \
+            libxext-dev libxinerama-dev libxrandr-dev libxrender-dev \
+            libfreetype6-dev libfontconfig1-dev libgl1-mesa-dev \
+            xvfb gcovr
+
+      - name: Configure with coverage
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DMINISYNTH_ENABLE_COVERAGE=ON
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Run tests
+        run: xvfb-run --auto-servernum ctest --test-dir build --output-on-failure
+
+      - name: Generate coverage report
+        run: |
+          gcovr --root . \
+                --xml-pretty \
+                --output coverage.xml \
+                --exclude '.*_deps.*' \
+                --exclude '.*tests.*' \
+                --exclude '.*artefacts.*' \
+                --print-summary
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage.xml
+          fail_ci_if_error: false
+
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+  

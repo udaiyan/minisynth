@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.22)
 project(MiniSynth VERSION 0.1.0 LANGUAGES C CXX)
 
+# ---- Optional coverage instrumentation ----
+option(MINISYNTH_ENABLE_COVERAGE "Enable code coverage instrumentation" OFF)
+
+if(MINISYNTH_ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(--coverage -g -O0)
+    add_link_options(--coverage)
+endif()
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

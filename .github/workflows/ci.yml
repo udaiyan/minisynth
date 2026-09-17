@@ -99,9 +99,10 @@ jobs:
           gcovr --root . \
                 --xml-pretty \
                 --output coverage.xml \
+                --filter 'src/' \
                 --exclude '.*_deps.*' \
-                --exclude '.*tests.*' \
                 --exclude '.*artefacts.*' \
+                --gcov-ignore-errors=no_working_dir_found \
                 --print-summary
 
       - name: Upload coverage to Codecov

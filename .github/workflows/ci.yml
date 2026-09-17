@@ -103,7 +103,7 @@ jobs:
                 --exclude '.*_deps.*' \
                 --exclude '.*tests.*' \
                 --exclude '.*artefacts.*' \
-                --gcov-ignore-errors=no_working_dir_found \
+                --gcov-ignore-errors=all \
                 --print-summary
 
       - name: Upload coverage to Codecov

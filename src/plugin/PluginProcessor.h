@@ -1,6 +1,10 @@
 #pragma once
 
 #include <juce_audio_processors/juce_audio_processors.h>
+#include "dsp/Oscillator.h"
+#include "dsp/StateVariableFilter.h"
+#include "dsp/SynthEngine.h"
+#include <atomic> 
 
 class MiniSynthProcessor : public juce::AudioProcessor
 {
@@ -40,9 +44,17 @@ public:
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
 private:
-    // TEMPORARY: throwaway sine generator, replaced by the real DSP engine next step.
-    double phase = 0.0;
-    double phaseDelta = 0.0;
+    minisynth::SynthEngine engine;
 
+    std::atomic<float>* gainParam = nullptr;
+    std::atomic<float>* cutoffParam = nullptr;
+    std::atomic<float>* resonanceParam = nullptr;
+    std::atomic<float>* filterModeParam = nullptr;
+
+public:
+    // The on-screen keyboard feeds notes into here.
+    juce::MidiKeyboardState keyboardState;
+
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MiniSynthProcessor)
 };

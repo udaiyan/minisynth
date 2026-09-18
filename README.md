@@ -76,7 +76,7 @@ Full breakdown: **[app.codecov.io/github/udaiyan/minisynth](https://app.codecov.
 The synthesis engine in `src/dsp/` has no JUCE dependency. The plugin
 links it; the tests link it; nothing else does.
 
-This is a deliberate application of the **Humble Object** pattern —
+This is a deliberate application of the **Humble Object** pattern -
 push the logic into a plain class, and leave the framework class as a
 thin shell. `MiniSynthProcessor::processBlock` reads parameters, loops
 over samples, and writes a buffer. Everything it *does* is delegated to

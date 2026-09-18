@@ -18,7 +18,7 @@ A polyphonic subtractive synthesiser with:
 - **Sine, saw, and square oscillators**
 - **ADSR amplitude envelope**
 - **State-variable filter** with low-pass, band-pass, and high-pass modes
-- **4 automatable parameters** — gain, cutoff, resonance, filter mode
+- **4 automatable parameters** - gain, cutoff, resonance, filter mode
 - **On-screen keyboard**, playable with mouse or QWERTY keys
 - **Standalone and VST3** builds
 - ![MiniSynth UI](docs/screenshot.png)
@@ -45,7 +45,7 @@ See [docs/SETUP.md](docs/SETUP.md) for full prerequisites.
 
 | Suite | Location | Tests | Runtime | Covers |
 |---|---|---|---|---|
-| Unit | `tests/unit/` | 30 | <1 s | `src/dsp` — oscillators, envelope, filter, voice, engine |
+| Unit | `tests/unit/` | 30 | <1 s | `src/dsp` - oscillators, envelope, filter, voice, engine |
 | Integration | `tests/plugin/test_plugin.cpp` | 8 | ~1 s | Parameters, state, buses, buffers, MIDI |
 | Component | `tests/plugin/test_editor.cpp` | 7 | ~1 s | Layout, parameter bindings, dropdown, keyboard |
 
@@ -66,10 +66,10 @@ Full breakdown: **[app.codecov.io/github/udaiyan/minisynth](https://app.codecov.
 
 ## Architecture
 
-- `src/dsp/` — **Pure C++, no JUCE.** Fully unit-testable synthesis engine.
-- `src/plugin/` — JUCE shell: parameters, editor, host integration.
-- `tests/unit/` — Fast DSP tests. No JUCE, no plugin host, no message thread.
-- `tests/plugin/` — JUCE integration and component tests.
+- `src/dsp/` - **Pure C++, no JUCE.** Fully unit-testable synthesis engine.
+- `src/plugin/` - JUCE shell: parameters, editor, host integration.
+- `tests/unit/` - Fast DSP tests. No JUCE, no plugin host, no message thread.
+- `tests/plugin/` - JUCE integration and component tests.
 
 ### Why this structure
 

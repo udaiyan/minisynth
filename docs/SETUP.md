@@ -32,7 +32,7 @@ Open the **Visual Studio Installer**, find your installation, click
 ticked:
 
 - **MSVC v145 - VS 2026 C++ x64/x86 build tools (Latest)**
-- **Windows 11 SDK** (any version — 10.0.26100 or newer)
+- **Windows 11 SDK** (any version - 10.0.26100 or newer)
 - **C++ CMake tools for Windows**
 
 The **Windows SDK is not optional**. It provides `rc.exe` and `mt.exe`,
@@ -101,7 +101,7 @@ Install the build dependencies:
 **`libxi-dev` is the one that's usually missing.** It provides
 `X11/extensions/XInput2.h`, which JUCE's `juce_gui_basics` includes. The
 error is `fatal error: X11/extensions/XInput2.h: No such file or
-directory`, and it appears partway through the build — after the DSP
+directory`, and it appears partway through the build - after the DSP
 library has already compiled successfully, which makes it look like a
 JUCE problem rather than a missing package.
 
@@ -120,13 +120,13 @@ Then run tests via `xvfb-run`:
 The editor component tests construct a `juce::AudioProcessorEditor`,
 which on Linux creates a real X11 window. There's no display on a CI
 runner, so the tests would fail or hang. `xvfb-run` starts a virtual
-framebuffer — an X server that exists only in memory. Window creation
+framebuffer - an X server that exists only in memory. Window creation
 succeeds, nothing is drawn anywhere, and the tests run normally.
 
 `--auto-servernum` picks a free display number so parallel CI jobs
 don't collide.
 
-**If you're on a desktop Linux machine**, you don't need xvfb — just
+**If you're on a desktop Linux machine**, you don't need xvfb - just
 run `ctest` directly.
 
 ---
@@ -154,7 +154,7 @@ SDK via its own configuration rather than the PATH. Using it removes
 the entire class of problem.
 
 The trade-off is that Ninja builds are faster. If your PATH is set up
-correctly and you prefer Ninja, add a preset for it — the build itself
+correctly and you prefer Ninja, add a preset for it - the build itself
 doesn't care.
 
 ---
@@ -187,7 +187,7 @@ missing:
 
        rmdir /s /q .vs
 
-   VS regenerates it on next open. This is safe — `.vs/` contains only
+   VS regenerates it on next open. This is safe - `.vs/` contains only
    per-user state.
 
    ### A test that has been renamed
@@ -303,7 +303,7 @@ Install gcovr if it's missing:
 
 `--gcov-ignore-errors=all` suppresses fatal errors when gcov is run
 against JUCE and Catch2 object files whose source paths can't be
-resolved. It's noise — the `--filter` and `--exclude` patterns decide
+resolved. It's noise - the `--filter` and `--exclude` patterns decide
 what actually appears in the report.
 
 ---
@@ -311,7 +311,7 @@ what actually appears in the report.
 ## 8. IDE-independent build
 
 Everything above works from the command line on any platform. The
-repository is editor-agnostic — no `.sln`, no `.vcxproj`, no
+repository is editor-agnostic - no `.sln`, no `.vcxproj`, no
 `.idea/`. Any tool that reads `CMakeLists.txt` will work.
 
 If you're using VS Code, the **CMake Tools** extension is the usual

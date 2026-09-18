@@ -20,7 +20,7 @@ compile `PluginProcessor.cpp` and `PluginEditor.cpp` directly.
 
 ### Unit (`tests/unit/`)
 
-Covers `src/dsp/` — `Oscillator`, `AdsrEnvelope`, `StateVariableFilter`,
+Covers `src/dsp/` - `Oscillator`, `AdsrEnvelope`, `StateVariableFilter`,
 `SynthVoice`, `SynthEngine`. No JUCE. No plugin host. No message thread.
 Plain objects with plain state.
 
@@ -38,7 +38,7 @@ wiring between the framework and the engine.
 
 ### Component (`tests/plugin/test_editor.cpp`)
 
-Covers `MiniSynthEditor` — layout, parameter bindings, the filter-mode
+Covers `MiniSynthEditor` - layout, parameter bindings, the filter-mode
 dropdown, and the on-screen keyboard.
 
 These test the *binding*, not the pixels. See §6 for why.
@@ -51,7 +51,7 @@ Selected over GoogleTest and doctest.
 
 | Criterion | Catch2 | GoogleTest | doctest |
 |---|---|---|---|
-| CMake integration | `catch_discover_tests` — first-class | First-class | Manual |
+| CMake integration | `catch_discover_tests` - first-class | First-class | Manual |
 | Assertion readability | Expression decomposition | Standard macros | Standard macros |
 | Setup reuse | `SECTION` | Fixtures | `SUBCASE` |
 | Header-only option | Yes (v3 has a compiled form) | No | Yes |
@@ -102,7 +102,7 @@ plugin test could be any of a dozen things. Separating the layers means
 a red test names the layer it broke in.
 
 **A working edit loop.** Changing the filter doesn't recompile JUCE.
-Test suites don't die of being wrong — they die of being slow enough
+Test suites don't die of being wrong - they die of being slow enough
 that people stop running them.
 
 ### What it costs
@@ -123,7 +123,7 @@ Test names read as sentences describing behaviour:
     TEST_CASE ("AdsrEnvelope: release reaches zero in the configured time", "[envelope]")
 
 Format: `<Class>: <what it does>`. This makes the test list itself a
-specification — reading the names top to bottom tells you what the
+specification - reading the names top to bottom tells you what the
 class promises.
 
 ### Tags
@@ -140,9 +140,9 @@ two-second and a ten-second iteration.
 
 ### `CHECK` vs `REQUIRE`
 
-- **`REQUIRE`** — stops the test on failure. Use for preconditions and
+- **`REQUIRE`** - stops the test on failure. Use for preconditions and
   short tests.
-- **`CHECK`** — continues on failure. Use inside long loops, so you see
+- **`CHECK`** - continues on failure. Use inside long loops, so you see
   every failure rather than just the first.
 
 Rule of thumb: `CHECK` in loops over 100 iterations, `REQUIRE` elsewhere.
@@ -165,7 +165,7 @@ Repeated setup goes in an anonymous namespace at the top of the file:
 - `settleWithDC (StateVariableFilter& filter, float input)`
 - `makeReadyVoice()`
 
-Anonymous namespaces give internal linkage — the helper won't collide
+Anonymous namespaces give internal linkage - the helper won't collide
 with a same-named function in another test file.
 
 **Push counting into helpers.** Three separate test failures in this
@@ -207,7 +207,7 @@ to [Codecov](https://codecov.io/gh/udaiyan/minisynth).
 
 Coverage runs only on Linux, in a separate CI job with a Debug build and
 `--coverage` instrumentation. The main Windows/Linux jobs build Release
-without instrumentation — they're about correctness, not measurement.
+without instrumentation - they're about correctness, not measurement.
 
 `tests/` and `build/_deps/` are excluded. Coverage of test code is not a
 useful metric, and JUCE/Catch2 coverage would swamp the signal.
@@ -216,11 +216,11 @@ useful metric, and JUCE/Catch2 coverage would swamp the signal.
 
 The uncovered lines fall into three categories:
 
-1. **Rendering** — `paint()` methods. Verified manually. See §6.
-2. **Host notification paths** — code triggered by a running DAW.
+1. **Rendering** - `paint()` methods. Verified manually. See §6.
+2. **Host notification paths** - code triggered by a running DAW.
    Exercised by the integration suite's state round-trip, but not every
    branch.
-3. **Defensive branches** — guards for states that are hard to reach
+3. **Defensive branches** - guards for states that are hard to reach
    from tests, such as the `allNotesOff` path when no voices are active.
 
 **Do not chase 100%.** The last few percent of coverage usually costs
@@ -236,7 +236,7 @@ not oversights.
 
 ### Golden-image / visual regression tests
 
-**Not used.** Rendering is platform-dependent — font hinting, DPI
+**Not used.** Rendering is platform-dependent - font hinting, DPI
 scaling, and subpixel antialiasing all differ between Windows, Linux,
 and macOS, and between JUCE versions. Reference images would need to be
 maintained per-platform and regenerated on every JUCE upgrade.
@@ -255,8 +255,8 @@ The cost/benefit doesn't work at this scale.
 2. **It only works for the Standalone app.** Inside a DAW, the window
    belongs to the host, and automation becomes host-specific.
 
-Combined with the CI cost — Linux jobs need `xvfb`, tests become
-timing-dependent and flaky — the payoff doesn't justify the complexity.
+Combined with the CI cost - Linux jobs need `xvfb`, tests become
+timing-dependent and flaky - the payoff doesn't justify the complexity.
 
 **If we added it**, the candidate uses would be: launching the
 Standalone, loading a preset, and asserting audio is produced. That's
@@ -289,10 +289,10 @@ a CI job running the tests under ASan and TSan. Noted in `ROADMAP.md`.
 
 A worked example. Suppose you're adding a `triangle` waveform.
 
-**Step 1 — decide which layer.** Triangle generation is DSP logic, so
+**Step 1 - decide which layer.** Triangle generation is DSP logic, so
 the test goes in `tests/unit/test_oscillator.cpp`.
 
-**Step 2 — write the test in terms of the contract.** A triangle ramps
+**Step 2 - write the test in terms of the contract.** A triangle ramps
 up and down. At sample rate 100 Hz and frequency 1 Hz, one cycle is 100
 samples. Phase 0.00 → −1, phase 0.25 → 0, phase 0.50 → +1, phase 0.75 → 0.
 
@@ -316,14 +316,14 @@ samples. Phase 0.00 → −1, phase 0.25 → 0, phase 0.50 → +1, phase 0.75 �
         REQUIRE_THAT (sampleAt (osc, 76), WithinAbs ( 0.0f, 0.02f));
     }
 
-**Step 3 — use the existing helpers.** `sampleAt` already exists.
+**Step 3 - use the existing helpers.** `sampleAt` already exists.
 `WithinAbs` is already imported. No new machinery.
 
-**Step 4 — run it.** `minisynth_tests.exe "[oscillator]"`. If it fails,
-the bug is in the oscillator, not the test — unless the test itself is
+**Step 4 - run it.** `minisynth_tests.exe "[oscillator]"`. If it fails,
+the bug is in the oscillator, not the test - unless the test itself is
 wrong about the discrete behaviour (see §4).
 
-**Step 5 — check coverage.** Run the coverage job locally or wait for
+**Step 5 - check coverage.** Run the coverage job locally or wait for
 CI. The new branch in the `switch` statement should now be covered.
 
 **What good looks like:**

@@ -10,9 +10,9 @@ deliberately deferred.
 
 **Ticket prefixes:**
 
-- `MS-nnn` — MiniSynth project
-- `TEST-nnn` — test infrastructure
-- `CI-nnn` — build and pipeline
+- `MS-nnn` - MiniSynth project
+- `TEST-nnn` - test infrastructure
+- `CI-nnn` - build and pipeline
 
 **Status:** `Done` · `In Progress` · `Next` · `Backlog` · `Won't Do`
 
@@ -114,7 +114,7 @@ in the next sprint.
 **Why band-limiting is next.** The saw and square oscillators alias at
 high pitches. It's a known limitation, documented in the README, and
 it's the largest remaining correctness gap. PolyBLEP is well understood
-and testable — you can assert that high harmonics don't fold back into
+and testable - you can assert that high harmonics don't fold back into
 the audible range.
 
 ---
@@ -125,31 +125,31 @@ Not scheduled. Listed so they're not forgotten.
 
 ### Engine
 
-- MS-040 — Second oscillator + detune
-- MS-041 — LFO with assignable destination
-- MS-042 — Sub-oscillator
-- MS-043 — Arpeggiator
-- MS-044 — Pitch envelope
+- MS-040 - Second oscillator + detune
+- MS-041 - LFO with assignable destination
+- MS-042 - Sub-oscillator
+- MS-043 - Arpeggiator
+- MS-044 - Pitch envelope
 
 ### Plugin
 
-- MS-050 — Preset browser
-- MS-051 — A/B compare
-- MS-052 — MIDI learn for parameter mapping
-- MS-053 — Standalone audio device settings panel
-- MS-054 — Undo/redo for editor changes
+- MS-050 - Preset browser
+- MS-051 - A/B compare
+- MS-052 - MIDI learn for parameter mapping
+- MS-053 - Standalone audio device settings panel
+- MS-054 - Undo/redo for editor changes
 
 ### Test
 
-- TEST-030 — Benchmark suite for the voice loop
-- TEST-031 — Golden-audio regression on a small, stable render
-- TEST-032 — Property-based tests for the envelope state machine
+- TEST-030 - Benchmark suite for the voice loop
+- TEST-031 - Golden-audio regression on a small, stable render
+- TEST-032 - Property-based tests for the envelope state machine
 
 ### CI
 
-- CI-020 — CodeQL static analysis
-- CI-021 — clang-format check on PRs
-- CI-022 — Dependency update PRs via Dependabot
+- CI-020 - CodeQL static analysis
+- CI-021 - clang-format check on PRs
+- CI-022 - Dependency update PRs via Dependabot
 
 ---
 
@@ -193,7 +193,7 @@ licences. VST3 only.
 If this were a team rather than a solo project, the tickets above would
 break into sprints as follows.
 
-### Sprint 1 — Foundations
+### Sprint 1 - Foundations
 
 The work that's already done. In a squad context this would be:
 
@@ -204,13 +204,13 @@ The work that's already done. In a squad context this would be:
 The dependency is that DSP interfaces need to be agreed before the
 plugin work starts. That's a two-day spike, not a sprint.
 
-### Sprint 2 — Hardening
+### Sprint 2 - Hardening
 
 - **Two engineers** on the test suites (unit and integration/component)
 - **One engineer** on CI: matrix, caching, coverage
 - **One engineer** on documentation
 
-### Sprint 3 — Quality gaps
+### Sprint 3 - Quality gaps
 
 The "Next" section above. Band-limiting is the largest piece and could
 absorb two engineers if split into "implement PolyBLEP" and "write
@@ -226,18 +226,18 @@ tests for aliasing behaviour".
 
 Three natural ownership areas:
 
-**Engine** (`src/dsp/`) — DSP correctness, voice allocation, envelope
+**Engine** (`src/dsp/`) - DSP correctness, voice allocation, envelope
 behaviour.
 
-**Plugin** (`src/plugin/`) — host integration, parameters, editor,
+**Plugin** (`src/plugin/`) - host integration, parameters, editor,
 state.
 
-**Infrastructure** (`tests/`, `.github/`, `docs/`) — framework,
+**Infrastructure** (`tests/`, `.github/`, `docs/`) - framework,
 CI, coverage, onboarding.
 
 The split is deliberate: the engine can be developed and tested
 independently of the plugin, so the two can move in parallel without
-blocking each other. The infrastructure area is a shared service — it
+blocking each other. The infrastructure area is a shared service - it
 serves the other two rather than building features of its own.
 
 ---
@@ -255,7 +255,7 @@ For consistency, tickets in this project follow a fixed shape.
 becomes a test if it's testable.
 
 **Estimate:** S / M / L for anything in "Next". Backlog items aren't
-estimated — estimating them would imply a commitment.
+estimated - estimating them would imply a commitment.
 
 **Definition of done:**
 

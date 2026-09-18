@@ -11,7 +11,7 @@ Three test suites, each answering a different question.
 
 | Suite | Location | Tests | Runtime | Question it answers |
 |---|---|---|---|---|
-| Unit | `tests/unit/` | ~30 | <1 s | Does the DSP behave correctly? |
+| Unit | `tests/unit/` | 45 | <1 s | Does the DSP behave correctly? |
 | Integration | `tests/plugin/test_plugin.cpp` | 8 | ~1 s | Does the plugin fulfil its host contract? |
 | Component | `tests/plugin/test_editor.cpp` | 7 | ~1 s | Is the UI wired to the model? |
 

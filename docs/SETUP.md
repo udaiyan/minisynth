@@ -131,23 +131,15 @@ run `ctest` directly.
 
 ---
 
-## 4. CMakePresets.json
+## 4. CMake presets
 
-The repository includes a `CMakePresets.json` that pins the generator
-and configuration. Visual Studio picks it up automatically when you
-open the folder.
+The repository doesn't currently ship a `CMakePresets.json`. Visual
+Studio uses its own default preset when opening the folder (the
+configuration is `x64-Debug` by default and can be changed in the
+toolbar dropdown).
 
-Two presets are defined:
-
-| Preset | Generator | Build type |
-|---|---|---|
-| `vs-debug` | Visual Studio 2026 | Debug |
-| `vs-release` | Visual Studio 2026 | Release |
-
-To build from the command line with a preset:
-
-    cmake --preset vs-release
-    cmake --build --preset vs-release
+The command-line examples in this document use `cmake -B build`
+directly, which works without a preset.
 
 ### Why the Visual Studio generator, not Ninja
 

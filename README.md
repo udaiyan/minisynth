@@ -123,7 +123,7 @@ See [ROADMAP.md](ROADMAP.md) for the full ticket list.
 - [Testing strategy](docs/TESTING.md) - layers, framework choice, conventions, what we deliberately don't test
 - [AI-assisted test policy](docs/AI_ASSISTED_TESTS.md) - tooling, prompting standards, review discipline, quality thresholds
 - [Setup](docs/SETUP.md) - prerequisites, platform quirks, common build failures
-- [Roadmap](ROADMAP.md) - completed, in-flight, next, and deliberately-not-planned work
+- [Roadmap](docs/ROADMAP.md) - completed, in-flight, next, and deliberately-not-planned work
 
 ---
 

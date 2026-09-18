@@ -93,7 +93,7 @@ That split buys three things:
    layers separately means a red test names the layer it broke in.
 
 3. **A fast feedback loop.** Changing the filter doesn't recompile JUCE.
-   That matters more than it sounds — test suites don't die of being
+   That matters more than it sounds - test suites don't die of being
    wrong, they die of being slow enough that people stop running them.
 
 The cost is real: the glue is under-tested, and the plugin-level suite
@@ -107,8 +107,8 @@ for the full strategy.
 Each of these is a conscious decision, documented rather than hidden.
 
 - **Naive saw and square oscillators alias** at high frequencies.
-  Band-limited synthesis (PolyBLEP) is the fix — tracked as MS-030.
-- **No parameter smoothing** — fast cutoff moves can produce zipper
+  Band-limited synthesis (PolyBLEP) is the fix - tracked as MS-030.
+- **No parameter smoothing** - fast cutoff moves can produce zipper
   noise. Tracked as MS-020.
 - **Voice stealing clicks** rather than crossfading. Tracked as MS-031.
 - **No velocity on the on-screen keyboard.** The engine handles
@@ -120,10 +120,10 @@ See [ROADMAP.md](ROADMAP.md) for the full ticket list.
 
 ## Docs
 
-- [Testing strategy](docs/TESTING.md) — layers, framework choice, conventions, what we deliberately don't test
-- [AI-assisted test policy](docs/AI_ASSISTED_TESTS.md) — tooling, prompting standards, review discipline, quality thresholds
-- [Setup](docs/SETUP.md) — prerequisites, platform quirks, common build failures
-- [Roadmap](ROADMAP.md) — completed, in-flight, next, and deliberately-not-planned work
+- [Testing strategy](docs/TESTING.md) - layers, framework choice, conventions, what we deliberately don't test
+- [AI-assisted test policy](docs/AI_ASSISTED_TESTS.md) - tooling, prompting standards, review discipline, quality thresholds
+- [Setup](docs/SETUP.md) - prerequisites, platform quirks, common build failures
+- [Roadmap](ROADMAP.md) - completed, in-flight, next, and deliberately-not-planned work
 
 ---
 

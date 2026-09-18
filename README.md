@@ -85,7 +85,7 @@ over samples, and writes a buffer. Everything it *does* is delegated to
 That split buys three things:
 
 1. **Fast tests.** The DSP suite runs its 30 tests in under a second.
-   No plugin host, no audio device, no message thread — just plain
+   No plugin host, no audio device, no message thread - just plain
    objects with plain state.
 
 2. **Good failure messages.** An envelope test that fails is an envelope

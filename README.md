@@ -142,8 +142,8 @@ JUCE and Catch2 are cached between runs, so a typical CI run takes
 
 ### Badges
 
-- **CI** — build and test status on both platforms
-- **Codecov** — line coverage from the latest `main` build
+- **CI** - build and test status on both platforms
+- **Codecov** - line coverage from the latest `main` build
 
 Both link through to the full report.
 
